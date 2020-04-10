@@ -1,6 +1,7 @@
 package com.zj.design;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zj.design.activity.HomePagerActivity;
 import com.zj.design.activity.SettingActivity;
 import com.zj.design.adapter.MyPagerAdapter;
 import com.zj.design.base.BaseFragment;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     MyPagerAdapter myPagerAdapter;
+    FloatingActionButton floatingActionButton;
     List<BaseFragment> list;
 
     @Override
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initNavigation();
         initViewPager();
+        initFloatingBTN();
     }
 
     public void initNavigation() {
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         SettingActivity.launch(MainActivity.this);
                         break;
                     case R.id.menu_user:
-                        Toast.makeText(MainActivity.this, "个人空间", Toast.LENGTH_LONG).show();
+                        HomePagerActivity.launch(MainActivity.this,0);
                         break;
                     case R.id.menu_version:
                         Toast.makeText(MainActivity.this, "当前版本已经是最新版本了", Toast.LENGTH_LONG).show();
@@ -92,5 +96,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(myPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public void initFloatingBTN(){
+        floatingActionButton=findViewById(R.id.floating_btn);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"发布页面待处理",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
